@@ -1,0 +1,19 @@
+{
+  "name": "DS_ALGO",
+  "version": "1.0.0",
+  "description": "To Explore and Learn DS and ALGO",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^14.14.6",
+    "typescript": "^4.0.5"
+  },
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc",
+    "run": "ts-node-dev --respawn --transpile-only src/app/index.ts"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0"
+  }
+}
