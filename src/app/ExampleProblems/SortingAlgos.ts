@@ -1,6 +1,9 @@
 import { LinkedListNode, PayLoad } from "../DataStructures/LinkedList";
-import { askAndGet } from "../Utility";
+import { askAndGet, isGreater, isLesser } from "../Utility";
 
+const swap = (numbers: number[], a:number, b:number) => {
+    [numbers[a], numbers[b]] = [numbers[b], numbers[a]];
+}
 
 export const getNumbers = async () => {
     const n = await askAndGet("How many numbers do you want to enter ? : ");
@@ -17,15 +20,11 @@ export const getNumbers = async () => {
 // get the max / min of the numbers as a bubble to right
 // in each iteration therefore at N^2 we get a sorted array
 
-export const bubbleSort = async (desc?:boolean) => {
 
+export const bubbleSort = async (desc?:boolean) => {
     let numbers = await getNumbers();
     let size = numbers.length;
-
-    const isLesser = (num1: number, num2: number) => num1 < num2;
-    const isGreater = (num1: number, num2: number) => num1 > num2;
-
-    let compareFunction:Function = isLesser;
+    let compareFunction: Function = isLesser;
 
     let consideredIndex = 0;
     
@@ -34,14 +33,41 @@ export const bubbleSort = async (desc?:boolean) => {
     const compareWithRestOfThemAndReplace = () => {
         numbers.slice(consideredIndex+1).forEach((number, index) => {
             if(compareFunction(number, numbers[consideredIndex])){
-                [numbers[consideredIndex], numbers[consideredIndex + index + 1]] =
-                    [numbers[consideredIndex + index + 1], numbers[consideredIndex]]
+                swap(numbers, consideredIndex, consideredIndex+index+1);
             }
         })
     }
 
     while(consideredIndex < size){
         compareWithRestOfThemAndReplace();
+        consideredIndex++;
+    }
+    
+    return numbers;
+}
+
+
+export const insertionSort = async (desc?: boolean) => {
+    let numbers = await getNumbers();
+    let size = numbers.length;
+    let compareFunction: Function = isLesser;
+    let divider = 0;
+    let sorted = numbers.slice(0,divider);
+    let unsorted = numbers.slice(divider);
+    let consideredIndex = 0;
+
+    desc && desc == true ? compareFunction = isGreater : compareFunction = isLesser;
+    
+    const insertThisNumberInSortedSectionOfOriginalArray = () => {
+        for (let i = 0; i < consideredIndex; i++) {
+            if(compareFunction(numbers[consideredIndex], numbers[i])){
+
+            }
+        }
+    }
+
+    while (consideredIndex < size) {
+        insertThisNumberInSortedSectionOfOriginalArray();
         consideredIndex++;
     }
     
